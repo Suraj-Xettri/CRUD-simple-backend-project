@@ -48,5 +48,25 @@ app.get('/delete/:userID', async (req, res) => {
       }
 })
 
+app.post('/update/:userID', async (req, res) => {
+    try {
+        const { image, email, username } = req.body;
+        const updateUser = await userModel.findOneAndUpdate(
+            {_id: req.params.userID},
+            {image, email, username},
+            {new: true}
+
+        );
+        if (updateUser) {
+            res.redirect('/view-users'); // Adjust this as needed
+        } else {
+          res.status(404).send('User not found');
+        }
+      } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).send('Internal Server Error');
+      }
+})
+
 
 app.listen(3000)
