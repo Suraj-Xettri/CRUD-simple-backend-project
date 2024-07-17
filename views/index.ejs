@@ -13,7 +13,7 @@
           <div class="bg-blue-500 text-white text-center py-4">
             <h1 class="text-xl font-bold">User Registration</h1>
           </div>
-          <form class="px-8 pt-6 pb-8 mb-4">
+          <form action="/create" method="post" class="px-8 pt-6 pb-8 mb-4">
             <div class="mb-4">
               <label
                 class="block text-gray-700 text-sm font-bold mb-2"
@@ -26,6 +26,7 @@
                 id="name"
                 type="text"
                 placeholder="Username"
+                name="Username"
               />
             </div>
             <div class="mb-4">
@@ -40,6 +41,7 @@
                 id="email"
                 type="email"
                 placeholder="Email"
+                name="email"
               />
             </div>
             <div class="mb-6">
@@ -54,6 +56,7 @@
                 id="image-url"
                 type="text"
                 placeholder="Image URL"
+                name="image"
               />
             </div>
             <div class="flex items-center justify-between">

@@ -13,12 +13,20 @@ app.get('/', (req, res) => {
     res.render("index")
 })
 
-app.post('/user', (req, res) => {
-    
+app.post('/create', async (req, res) => {
+    const user = await userModel.create({
+        image: req.body.image,
+        email: req.body.email,
+        username: req.body.Username
+    })
+    res.redirect('/')
+    console.log(user)
 })
 
-app.get('/view', (req, res) => {
-    res.render("view")
+
+app.get('/view', async (req, res) => {
+    const users = await userModel.find()
+    res.render("view",{users: users})
 })
 
 app.listen(3000)
