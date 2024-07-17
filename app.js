@@ -20,13 +20,28 @@ app.post('/create', async (req, res) => {
         username: req.body.Username
     })
     res.redirect('/')
-    console.log(user)
 })
 
 
-app.get('/view', async (req, res) => {
+app.get('/view-users', async (req, res) => {
     const users = await userModel.find()
     res.render("view",{users: users})
 })
+
+
+app.get('/delete/:userID', async (req, res) => {
+    try {
+        const deletedUser = await userModel.findOneAndDelete({ _id: req.params.userID });
+        if (deletedUser) {
+            res.redirect('/view-users'); // Adjust this as needed
+        } else {
+          res.status(404).send('User not found');
+        }
+      } catch (error) {
+        console.error('Error deleting user:', error);
+        res.status(500).send('Internal Server Error');
+      }
+})
+
 
 app.listen(3000)
