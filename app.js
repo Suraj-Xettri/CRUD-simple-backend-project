@@ -28,6 +28,11 @@ app.get('/view-users', async (req, res) => {
     res.render("view",{users: users})
 })
 
+app.get('/edit/:edit', async (req, res) => {
+    const user =  await userModel.findOne({_id: req.params.edit})
+    res.render("edit", {user: user})
+})
+
 
 app.get('/delete/:userID', async (req, res) => {
     try {
